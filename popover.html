@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Popover</title>
+
+    <style>
+       .popover-container {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+}
+
+.popover-content {
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 10px;
+  min-width: 75%;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  z-index: 999;
+    opacity: 0;
+  transition: opacity 0.2s ease-in-out;
+}
+
+.popover-container:hover {
+  background-color: #eee;
+}
+    </style>
+</head>
+<body>
+    <div class="popover-container" popover-type="top" title="This is a title" popover-content="Hello">
+        kjnkjekjfbew
+      </div>
+
+    <script>
+        const popoverContainer = document.querySelector('.popover-container');
+        let popoverContent = "<div class='popover-content'>" + popoverContainer.getAttribute('popover-content') + "</div>";
+        if(popoverContainer.getAttribute('title')){
+            popoverContent = "<div class='popover-content'><h3>" + popoverContainer.getAttribute('title') + "</h3></p>" + popoverContainer.getAttribute('popover-content') + "</p></div>";
+
+        }
+
+popoverContainer.innerHTML += popoverContent;
+popoverContent = document.querySelector('.popover-content');
+popoverContainer.addEventListener('click', () => {
+  popoverContent.style.opacity = popoverContent.style.opacity === '1' ? '0' : '1';
+});
+
+    </script>
+</body>
+</html>
