@@ -7,26 +7,182 @@
     cursor: pointer;
 }
 
-  .accordion-arrow:after, .collapse-arrow::after {
-    content: "";
-    display: inline-block;
-    width: 8px;
-    height: 8px;
-    border-top: 2px solid black;
-    border-right: 2px solid black;
-    transform: rotate(135deg);
-    transition: transform 0.2s ease-in-out;
-  }
+.accordion-button.arrow:after, .collapse-button.arrow::after {
+  content: "";
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-top: 2px solid black;
+  border-right: 2px solid black;
+  transform: rotate(135deg);
+  transition: transform 0.2s ease-in-out;
+}
   
-  .accordion-active:after, .collapse-active:after {
-    transform: rotate(-45deg);
-  }
+.accordion-button.active:after, .collapse-button.active:after {
+  transform: rotate(-45deg);
+}
 
 .accordion-item, .collapse-item{
   max-height: 0;
   overflow: hidden;
 }
 
-.accordion-item-active, .collapse-item-active{
+.accordion-item.active, .collapse-item.active{
   transition: max-height 0.2s ease-out;
+}
+
+
+html.modal-active, body.modal-active {
+  overflow: hidden;
+}
+
+.modal {
+  position: fixed;
+  display: table;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  left: 0;
+  transform: scale(0);
+  z-index: 1;
+}
+
+.modal.modal-active {
+  transform: scale(1);
+}
+.modal.modal-active .modal-body {
+  background: white;
+  animation: fadeIn 0.5s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
+}
+.modal.modal-active .modal-body .modal-content {
+  opacity: 0;
+  animation: scaleUp 0.5s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
+}
+
+.modal.modal-active.out {
+  animation: quickScaleDown 0s 0.5s linear forwards;
+}
+.modal.modal-active.out .modal-body {
+  animation: fadeOut 0.5s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
+}
+.modal.modal-active.out .modal-body .modal-content {
+  animation: scaleDown 0.5s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
+}
+
+.modal .modal-body {
+  display: table-cell;
+  background: rgba(0, 0, 0, 0.8);
+  text-align: center;
+  vertical-align: middle;
+}
+
+.modal-body{
+    padding: 15px;
+}
+.modal .modal-body .modal-content {
+  background: white;
+  padding: 50px;
+  width: 30%;
+  display: inline-block;
+  border-radius: 3px;
+  position: relative;
+}
+
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-btn {
+  cursor: pointer;
+}
+
+.dropdown-content {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  z-index: 1;
+  display: none;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+}
+
+
+
+.dropdown-content.show {
+  display: block;
+  animation: dropdownfadeIn 0.5s;
+}
+
+.dropdown-content.out{
+  animation: dropdownfadeOut 0.5s ease-in-out;
+}
+
+@keyframes dropdownfadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+
+@keyframes dropdownfadeOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+
+@keyframes fadeIn {
+  0% {
+    background: rgba(0, 0, 0, 0);
+  }
+  100% {
+    background: rgba(0, 0, 0, 0.7);
+  }
+}
+@keyframes fadeOut {
+  0% {
+    background: rgba(0, 0, 0, 0.7);
+  }
+  100% {
+    background: rgba(0, 0, 0, 0);
+  }
+}
+@keyframes scaleUp {
+  0% {
+    transform: scale(0.8) translateY(-100px);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1) translateY(0px);
+    opacity: 1;
+  }
+}
+@keyframes scaleDown {
+  0% {
+    transform: scale(1) translateY(0px);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(0.8) translateY(-100px);
+    opacity: 0;
+  }
+}
+
+@keyframes quickScaleDown {
+  0% {
+    transform: scale(1);
+  }
+  99.9% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(0);
+  }
 }

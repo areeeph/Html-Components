@@ -2,10 +2,75 @@ const accordion_btns = document.querySelectorAll(".accordion .accordion-button")
 const collapse_btns = document.querySelectorAll(".collapse .collapse-button");
 
 
+//Modal
+const body = document.querySelector('body');
+       const modal_buttons = document.querySelectorAll('.modal-button');
+       const modal_close_buttons = document.querySelectorAll('.modal-close');
+    const modals = document.querySelectorAll('.modal');
+
+    modal_buttons.forEach((button) => {
+  button.addEventListener('click', () => {
+      modalContainer = document.querySelector(button.getAttribute('target'));
+
+    modalContainer.classList.remove('out');
+    modalContainer.classList.add('modal-active');
+    body.classList.add('modal-active');
+  });
+});
+
+modals.forEach((modal) => {
+    modal.addEventListener('click', () => {
+        if(!modal.classList.contains('static')){
+            modal.classList.add('out');
+            body.classList.remove('modal-active');
+        }
+});
+});
+
+modal_close_buttons.forEach((button) => {
+    button.addEventListener('click', () => {
+        const modal = document.querySelector(button.getAttribute('target'));
+            modal.classList.add('out');
+            body.classList.remove('modal-active');
+});
+});
+
+
+//Dropdown
+const dropdownBtns = document.querySelectorAll('.dropdown-btn');
+
+dropdownBtns.forEach((button) => {
+  button.addEventListener('click', () => {
+    closeAllDropdown();
+const dropdownContent = button.nextElementSibling;
+if(dropdownContent.classList.contains('dropdown-content')){
+  dropdownContent.classList.toggle('show');
+}
+});
+});
+
+
+window.onclick = function(e) {
+  if (!e.target.matches('.dropdown-btn')) {
+    closeAllDropdown()
+  }
+}
+
+function closeAllDropdown(){
+    var dropdowns = document.querySelectorAll(".dropdown-content");
+
+  dropdowns.forEach((el) => {
+    if (el.classList.contains('show')) {
+      el.classList.remove('show');
+    }
+  });
+}
+
+
 //Collapse
 collapse_btns.forEach((button) => {
 
-    if(button.classList.contains('collapse-active')){
+    if(button.classList.contains('active')){
         let collapse_item = button.nextElementSibling;
         collapse_item.style.maxHeight = collapse_item.scrollHeight + "px";
     }
@@ -15,11 +80,11 @@ collapse_btns.forEach((button) => {
 
         let collapse_item = button.nextElementSibling;
 
-        if(!collapse_item.classList.contains('collapse-item-active')){
-            collapse_item.classList.add('collapse-item-active');
+        if(!collapse_item.classList.contains('active')){
+            collapse_item.classList.add('active');
         }
 
-        button.classList.toggle("collapse-active");
+        button.classList.toggle("active");
 
         if (collapse_item.style.maxHeight) {
             collapse_item.style.maxHeight = null;
@@ -34,7 +99,7 @@ collapse_btns.forEach((button) => {
 //Accordion
 accordion_btns.forEach((button) => {
 
-    if(button.classList.contains('accordion-active')){
+    if(button.classList.contains('active')){
         let accordion_item = button.nextElementSibling;
         accordion_item.style.maxHeight = accordion_item.scrollHeight + "px";
     }
@@ -44,20 +109,20 @@ accordion_btns.forEach((button) => {
 
         let accordion_item = button.nextElementSibling;
 
-        if(!accordion_item.classList.contains('accordion-item-active')){
-            accordion_item.classList.add('accordion-item-active');
+        if(!accordion_item.classList.contains('active')){
+            accordion_item.classList.add('active');
         }
 
         accordion_btns.forEach((btn) => {
-            if(btn.classList.contains('accordion-active')){
+            if(btn.classList.contains('active')){
                 if(btn != button){
-                    btn.classList.toggle("accordion-active");
+                    btn.classList.toggle("active");
                     btn.nextElementSibling.style.maxHeight = null;
                 }
             }
         })
 
-        button.classList.toggle("accordion-active");
+        button.classList.toggle("active");
 
         if (accordion_item.style.maxHeight) {
             accordion_item.style.maxHeight = null;

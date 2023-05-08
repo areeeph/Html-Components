@@ -8,111 +8,7 @@
 
     <link rel="stylesheet" href="style.css">
     <style>
-        html.modal-active, body.modal-active {
-  overflow: hidden;
-}
-
-.modal {
-  position: fixed;
-  display: table;
-  height: 100%;
-  width: 100%;
-  top: 0;
-  left: 0;
-  transform: scale(0);
-  z-index: 1;
-}
-
-.modal.modal-active {
-  transform: scale(1);
-}
-.modal.modal-active .modal-body {
-  background: white;
-  animation: fadeIn 0.5s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
-}
-.modal.modal-active .modal-body .modal-content {
-  opacity: 0;
-  animation: scaleUp 0.5s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
-}
-
-.modal.modal-active.out {
-  animation: quickScaleDown 0s 0.5s linear forwards;
-}
-.modal.modal-active.out .modal-body {
-  animation: fadeOut 0.5s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
-}
-.modal.modal-active.out .modal-body .modal-content {
-  animation: scaleDown 0.5s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
-}
-
-.modal .modal-body {
-  display: table-cell;
-  background: rgba(0, 0, 0, 0.8);
-  text-align: center;
-  vertical-align: middle;
-}
-
-.modal-body{
-    padding: 15px;
-}
-.modal .modal-body .modal-content {
-  background: white;
-  padding: 50px;
-  width: 30%;
-  display: inline-block;
-  border-radius: 3px;
-  position: relative;
-}
-
-
-@keyframes fadeIn {
-  0% {
-    background: rgba(0, 0, 0, 0);
-  }
-  100% {
-    background: rgba(0, 0, 0, 0.7);
-  }
-}
-@keyframes fadeOut {
-  0% {
-    background: rgba(0, 0, 0, 0.7);
-  }
-  100% {
-    background: rgba(0, 0, 0, 0);
-  }
-}
-@keyframes scaleUp {
-  0% {
-    transform: scale(0.8) translateY(-100px);
-    opacity: 0;
-  }
-  100% {
-    transform: scale(1) translateY(0px);
-    opacity: 1;
-  }
-}
-@keyframes scaleDown {
-  0% {
-    transform: scale(1) translateY(0px);
-    opacity: 1;
-  }
-  100% {
-    transform: scale(0.8) translateY(-100px);
-    opacity: 0;
-  }
-}
-
-@keyframes quickScaleDown {
-  0% {
-    transform: scale(1);
-  }
-  99.9% {
-    transform: scale(1);
-  }
-  100% {
-    transform: scale(0);
-  }
-}
+        
 
 
 
@@ -150,53 +46,10 @@
               </div>
 
               <div class="content">
-                <h1>Modal Animations</h1>
                 <div class="buttons">
                   <div class="modal-button" target="#modal-container2">Button 2</div>
                 </div>
               </div>
-        
-        <script>
-            const body = document.querySelector('body');
-       const modal_buttons = document.querySelectorAll('.modal-button');
-       const modal_close_buttons = document.querySelectorAll('.modal-close');
-    const modals = document.querySelectorAll('.modal');
-
-    modal_buttons.forEach((button) => {
-  button.addEventListener('click', () => {
-      modalContainer = document.querySelector(button.getAttribute('target'));
-
-    modalContainer.classList.remove('out');
-    modalContainer.classList.add('modal-active');
-    body.classList.add('modal-active');
-  });
-});
-
-modals.forEach((modal) => {
-    modal.addEventListener('click', () => {
-        if(!modal.classList.contains('static')){
-            modal.classList.add('out');
-            body.classList.remove('modal-active');
-        }
-});
-});
-
-modal_close_buttons.forEach((button) => {
-    button.addEventListener('click', () => {
-        const modal = document.querySelector(button.getAttribute('target'));
-            modal.classList.add('out');
-            body.classList.remove('modal-active');
-});
-});
-
-
-
-
-
-
-        </script>
-        
-
 
     <script src="main.js"></script>
 </body>
