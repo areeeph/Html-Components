@@ -38,16 +38,33 @@ modal_close_buttons.forEach((button) => {
 
 //Dropdown
 const dropdownBtns = document.querySelectorAll('.dropdown-btn');
+var dropdowns = document.querySelectorAll(".dropdown-content");
+
+for(let i = 0; i < dropdowns.length; i++){
+    dropdowns[i].setAttribute('tab-index', i);
+}
 
 dropdownBtns.forEach((button) => {
   button.addEventListener('click', () => {
-    closeAllDropdown();
-const dropdownContent = button.nextElementSibling;
-if(dropdownContent.classList.contains('dropdown-content')){
-  dropdownContent.classList.toggle('show');
+    
+      const dropdownContent = button.nextElementSibling;
+    if(dropdownContent.classList.contains('dropdown-content')){
+        closeDropdown(dropdownContent);
+        dropdownContent.classList.toggle('show');
+    }
+});
+});
+
+
+
+function closeDropdown(dropdownContent){
+
+  dropdowns.forEach((el) => {
+    if (dropdownContent.getAttribute('tab-index') !== el.getAttribute('tab-index') && el.classList.contains('show')) {
+      el.classList.remove('show');
+    }
+  });
 }
-});
-});
 
 
 window.onclick = function(e) {
@@ -57,7 +74,6 @@ window.onclick = function(e) {
 }
 
 function closeAllDropdown(){
-    var dropdowns = document.querySelectorAll(".dropdown-content");
 
   dropdowns.forEach((el) => {
     if (el.classList.contains('show')) {
@@ -65,6 +81,8 @@ function closeAllDropdown(){
     }
   });
 }
+
+
 
 
 //Collapse
