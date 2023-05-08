@@ -1,8 +1,40 @@
 const accordion_btns = document.querySelectorAll(".accordion .accordion-button");
+const collapse_btns = document.querySelectorAll(".collapse .collapse-button");
 
+
+//Collapse
+collapse_btns.forEach((button) => {
+
+    if(button.classList.contains('collapse-active')){
+        let collapse_item = button.nextElementSibling;
+        collapse_item.style.maxHeight = collapse_item.scrollHeight + "px";
+    }
+    
+
+    button.addEventListener("click", () => {
+
+        let collapse_item = button.nextElementSibling;
+
+        if(!collapse_item.classList.contains('collapse-item-active')){
+            collapse_item.classList.add('collapse-item-active');
+        }
+
+        button.classList.toggle("collapse-active");
+
+        if (collapse_item.style.maxHeight) {
+            collapse_item.style.maxHeight = null;
+        } else {
+            collapse_item.style.maxHeight = collapse_item.scrollHeight + "px";
+        } 
+    });
+});
+
+
+
+//Accordion
 accordion_btns.forEach((button) => {
 
-    if(button.classList.contains('active')){
+    if(button.classList.contains('accordion-active')){
         let accordion_item = button.nextElementSibling;
         accordion_item.style.maxHeight = accordion_item.scrollHeight + "px";
     }

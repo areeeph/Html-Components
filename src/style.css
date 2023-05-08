@@ -1,31 +1,32 @@
 
-.accordion-button {
+* {
+  box-sizing: border-box;
+}
+
+.accordion-button, .collapse-button {
     cursor: pointer;
 }
-  
 
-
-  .accordion-arrow:after {
+  .accordion-arrow:after, .collapse-arrow::after {
     content: "";
     display: inline-block;
-    width: 10px;
-    height: 10px;
+    width: 8px;
+    height: 8px;
     border-top: 2px solid black;
     border-right: 2px solid black;
     transform: rotate(135deg);
     transition: transform 0.2s ease-in-out;
   }
   
-  .accordion-active:after {
+  .accordion-active:after, .collapse-active:after {
     transform: rotate(-45deg);
   }
 
-.accordion-item{
+.accordion-item, .collapse-item{
   max-height: 0;
   overflow: hidden;
-  
 }
 
-.accordion-item-active{
+.accordion-item-active, .collapse-item-active{
   transition: max-height 0.2s ease-out;
 }
