@@ -1,13 +1,12 @@
-
-* {
-  box-sizing: border-box;
-}
-
 .accordion-button, .collapse-button {
     cursor: pointer;
 }
 
-.accordion-button.arrow:after, .collapse-button.arrow::after {
+.collapse{
+  visibility: visible;
+}
+
+.accordion.accordion-arrow .accordion-button:after, .collapse.collapse-arrow .collapse-button::after {
   content: "";
   display: inline-block;
   width: 8px;
@@ -18,19 +17,26 @@
   transition: transform 0.2s ease-in-out;
 }
   
-.accordion-button.active:after, .collapse-button.active:after {
-  transform: rotate(-45deg);
+.collapse.collapse-open .collapse-button::after, .collapse-button.collapse-active::after {
+  transform: rotate(-45deg) !important;
 }
 
-.accordion-item, .collapse-item{
+.accordion.accordion-open .accordion-button::after, .accordion-button.accordion-active::after {
+  transform: rotate(-45deg) !important;
+}
+
+.accordion-content, .collapse-content{
   max-height: 0;
   overflow: hidden;
 }
 
-.accordion-item.active, .collapse-item.active{
+.accordion-content.accordion-active, .collapse-content.collapse-active{
   transition: max-height 0.2s ease-out;
 }
 
+.collapse.collapse-open .collapse-content, .accordion.accordion-open .accordion-content{
+  max-height: 100%;
+}
 
 html.modal-active, body.modal-active {
   overflow: hidden;

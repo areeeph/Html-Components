@@ -1,9 +1,8 @@
-const accordion_btns = document.querySelectorAll(".accordion .accordion-button");
-const collapse_btns = document.querySelectorAll(".collapse .collapse-button");
+const body = document.querySelector('body');
+
 
 
 //Modal
-const body = document.querySelector('body');
        const modal_buttons = document.querySelectorAll('.modal-button');
        const modal_close_buttons = document.querySelectorAll('.modal-close');
     const modals = document.querySelectorAll('.modal');
@@ -86,23 +85,20 @@ function closeAllDropdown(){
 
 
 //Collapse
+const collapse = document.querySelectorAll('.collapse');
+const collapse_btns = document.querySelectorAll(".collapse .collapse-button");
+removeShowCollapse();
+
 collapse_btns.forEach((button) => {
-
-    if(button.classList.contains('active')){
-        let collapse_item = button.nextElementSibling;
-        collapse_item.style.maxHeight = collapse_item.scrollHeight + "px";
-    }
     
-
     button.addEventListener("click", () => {
-
         let collapse_item = button.nextElementSibling;
 
-        if(!collapse_item.classList.contains('active')){
-            collapse_item.classList.add('active');
+        if(!collapse_item.classList.contains('collapse-active')){
+            collapse_item.classList.add('collapse-active');
         }
 
-        button.classList.toggle("active");
+        button.classList.toggle("collapse-active");
 
         if (collapse_item.style.maxHeight) {
             collapse_item.style.maxHeight = null;
@@ -115,32 +111,35 @@ collapse_btns.forEach((button) => {
 
 
 //Accordion
+const accordion_btns = document.querySelectorAll(".accordion .accordion-button");
 accordion_btns.forEach((button) => {
+  let accordion = button.parentElement;
+    let accordion_item = button.nextElementSibling;
 
-    if(button.classList.contains('active')){
-        let accordion_item = button.nextElementSibling;
+    if(accordion.classList.contains('accordion-open')){
+        button.classList.add('accordion-active');
         accordion_item.style.maxHeight = accordion_item.scrollHeight + "px";
     }
     
 
     button.addEventListener("click", () => {
+       accordion.classList.remove('accordion-open');
 
-        let accordion_item = button.nextElementSibling;
 
-        if(!accordion_item.classList.contains('active')){
-            accordion_item.classList.add('active');
+        if(!accordion_item.classList.contains('accordion-active')){
+            accordion_item.classList.add('accordion-active');
         }
 
         accordion_btns.forEach((btn) => {
-            if(btn.classList.contains('active')){
+            if(btn.classList.contains('accordion-active')){
                 if(btn != button){
-                    btn.classList.toggle("active");
+                    btn.classList.toggle("accordion-active");
                     btn.nextElementSibling.style.maxHeight = null;
                 }
             }
         })
 
-        button.classList.toggle("active");
+        button.classList.toggle("accordion-active");
 
         if (accordion_item.style.maxHeight) {
             accordion_item.style.maxHeight = null;
@@ -149,3 +148,20 @@ accordion_btns.forEach((button) => {
         } 
     });
 });
+
+function removeShowCollapse(){
+
+  collapse.forEach((item) => {
+      
+      if(item.classList.contains('collapse-open')){
+        let collapse_content = item.querySelector('.collapse-content');
+        collapse_content.style.maxHeight = collapse_content.scrollHeight + "px";
+        
+        if(item.classList.contains('collapse-arrow')){
+          let collapse_button = item.querySelector('.collapse-button');
+          collapse_button.classList.add('collapse-active');
+        }
+        item.classList.remove('collapse-open');
+      }
+  });
+}
