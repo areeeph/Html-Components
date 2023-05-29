@@ -7,49 +7,41 @@
     <title>Modal</title>
 
     <link rel="stylesheet" href="style.css">
-    <style>
+
+</head>
+<body>
         
+  <div id="modal-container" class="modal">
+      <div class="modal-body">
+        <div class="modal-content">
+          <div><p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Deleniti repellat aut illum esse, impedit similique voluptatibus facilis quo laboriosam perferendis a modi? Debitis placeat doloremque voluptatem at minima mollitia magnam?</p></div>
+        </div>
+      </div>
+    </div>
 
-
-
-
-
-
-        </style>
-        </head>
-        <body>
-        
-            <div id="modal-container" class="modal">
-                <div class="modal-body">
-                  <div class="modal-content">
-                    <div><p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Deleniti repellat aut illum esse, impedit similique voluptatibus facilis quo laboriosam perferendis a modi? Debitis placeat doloremque voluptatem at minima mollitia magnam?</p></div>
-                  </div>
-                </div>
+    <div id="modal-container2" class="modal modal-static">
+      <div class="modal-body">
+          <div class="modal-content">
+              <div>
+                  <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Deleniti repellat aut illum esse, impedit similique voluptatibus facilis quo laboriosam perferendis a modi? Debitis placeat doloremque voluptatem at minima mollitia magnam?</p>
               </div>
-
-              <div id="modal-container2" class="modal static">
-                <div class="modal-body">
-                    <div class="modal-content">
-                        <div>
-                            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Deleniti repellat aut illum esse, impedit similique voluptatibus facilis quo laboriosam perferendis a modi? Debitis placeat doloremque voluptatem at minima mollitia magnam?</p>
-                        </div>
-                        <button class="modal-close" target="#modal-container2">close modal</button>
-                    </div>
-                </div>
-              </div>
+              <button class="modal-close" modal-target="#modal-container2">close modal</button>
+          </div>
+      </div>
+    </div>
 
 
-              <div class="content">
-                <div class="buttons">
-                  <div class="modal-button" target="#modal-container">Button 1</div>
-                </div>
-              </div>
+    <div class="content">
+      <div class="buttons">
+        <div class="modal-button" modal-target="#modal-container">Button 1</div>
+      </div>
+    </div>
 
-              <div class="content">
-                <div class="buttons">
-                  <div class="modal-button" target="#modal-container2">Button 2</div>
-                </div>
-              </div>
+    <div class="content">
+      <div class="buttons">
+        <div class="modal-button" modal-target="#modal-container2">Button 2</div>
+      </div>
+    </div>
 
     <script src="main.js"></script>
 </body>

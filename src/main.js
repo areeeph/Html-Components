@@ -9,7 +9,7 @@ const body = document.querySelector('body');
 
     modal_buttons.forEach((button) => {
   button.addEventListener('click', () => {
-      modalContainer = document.querySelector(button.getAttribute('target'));
+      modalContainer = document.querySelector(button.getAttribute('modal-target'));
 
     modalContainer.classList.remove('out');
     modalContainer.classList.add('modal-active');
@@ -17,20 +17,12 @@ const body = document.querySelector('body');
   });
 });
 
-modals.forEach((modal) => {
-    modal.addEventListener('click', () => {
-        if(!modal.classList.contains('static')){
-            modal.classList.add('out');
-            body.classList.remove('modal-active');
-        }
-});
-});
 
 modal_close_buttons.forEach((button) => {
     button.addEventListener('click', () => {
-        const modal = document.querySelector(button.getAttribute('target'));
-            modal.classList.add('out');
-            body.classList.remove('modal-active');
+        const modal = document.querySelector(button.getAttribute('modal-target'));
+        modal.classList.add('out');
+        body.classList.remove('modal-active');
 });
 });
 
@@ -66,11 +58,27 @@ function closeDropdown(dropdownContent){
 }
 
 
+
+
 window.onclick = function(e) {
   if (!e.target.matches('.dropdown-btn')) {
     closeAllDropdown()
   }
+
+  if(e.target.matches('.modal-body')){
+    const modals = document.querySelectorAll('.modal.modal-active');
+
+    modals.forEach((modal) => {
+        if(!modal.classList.contains('modal-static')){
+          modal.classList.add('out');
+          body.classList.remove('modal-active');  
+        }
+    });
+  }
 }
+
+
+
 
 function closeAllDropdown(){
 
