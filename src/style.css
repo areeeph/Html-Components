@@ -129,12 +129,11 @@ html.modal-active, body.modal-active {
 .steps{
   list-style: none;
   counter-reset: step;
-
 }
 
 .step{
   float: left;
-  width: 20%;
+  width: 30%;
   position: relative;
   text-align: center;
 }

@@ -125,14 +125,16 @@ accordion_btns.forEach((button) => {
     let accordion_item = button.nextElementSibling;
 
     if(accordion.classList.contains('accordion-open')){
+       accordion.classList.add('accordion-active')
         button.classList.add('accordion-active');
+        accordion_item.classList.add('accordion-active');
         accordion_item.style.maxHeight = accordion_item.scrollHeight + "px";
     }
     
 
     button.addEventListener("click", () => {
-       accordion.classList.remove('accordion-open');
-
+       accordion.classList.remove('accordion-open')
+       accordion.classList.toggle('accordion-active')
 
         if(!accordion_item.classList.contains('accordion-active')){
             accordion_item.classList.add('accordion-active');
@@ -141,6 +143,8 @@ accordion_btns.forEach((button) => {
         accordion_btns.forEach((btn) => {
             if(btn.classList.contains('accordion-active')){
                 if(btn != button){
+                    btn.parentElement.classList.toggle('accordion-active');
+                    btn.parentElement.classList.remove('accordion-open');
                     btn.classList.toggle("accordion-active");
                     btn.nextElementSibling.style.maxHeight = null;
                 }
